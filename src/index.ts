@@ -1,17 +1,15 @@
 import { OpenAPIRouter } from "@cloudflare/itty-router-openapi";
-import { TaskCreate } from "./endpoints/taskCreate";
-import { TaskDelete } from "./endpoints/taskDelete";
-import { TaskFetch } from "./endpoints/taskFetch";
-import { TaskList } from "./endpoints/taskList";
+import { RucFetch } from "endpoints/rucFetch";
+import { DniFetch } from "endpoints/dniFetch";
+import { UbigeoFetch } from "endpoints/ubigeoFetch";
 
 export const router = OpenAPIRouter({
 	docs_url: "/",
 });
 
-router.get("/api/tasks/", TaskList);
-router.post("/api/tasks/", TaskCreate);
-router.get("/api/tasks/:taskSlug/", TaskFetch);
-router.delete("/api/tasks/:taskSlug/", TaskDelete);
+router.get("/ruc/:ruc", RucFetch);
+router.get("/dni/:dni", DniFetch);
+router.get("/ubigeo/:ubigeo", UbigeoFetch);
 
 // 404 for everything else
 router.all("*", () =>
